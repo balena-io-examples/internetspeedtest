@@ -9,7 +9,13 @@ client.create_database('speedtest')
 
 class speedtest():
     def test(self):
-        p = subprocess.Popen(['./speedtest', '-a', '-f', 'json', '--accept-license', '--accept-gdpr'] , shell=False, stdout=subprocess.PIPE)
+        args = ['./speedtest', '-a', '-f', 'json', '--accept-license', '--accept-gdpr']
+
+        if os.environ.get('SERVER_ID') != None:
+            args.append('-s')
+            args.append(os.environ.get('SERVER_ID'))
+
+        p = subprocess.Popen(args , shell=False, stdout=subprocess.PIPE)
         response = p.communicate()
         result = json.loads(response[0])
         print ("Timestamp = " + str(result['timestamp']))
@@ -17,12 +23,12 @@ class speedtest():
         print ("Up = " + str(result['upload']['bandwidth']))
         print ("Latency = " + str(result['ping']['latency']))
         print ("Jitter = " + str(result['ping']['jitter']))
-        #print ("PacketLoss = " + str(result['packetLoss']))
         print ("Interface = " + str(result['interface']))
         print ("Server = " + str(result['server']))
         return result
 
 speedtest = speedtest()
+frequency = os.environ.get('FREQUENCY') or 3600
 
 while True:
     result = speedtest.test()
@@ -33,7 +39,6 @@ while True:
                 "up": int(result['upload']['bandwidth']),
                 "latency": float(result['ping']['latency']),
                 "jitter": float(result['ping']['jitter']),
-                #"packetloss": int(result['packetLoss']),
                 "interface": str(result['interface']['name']),
                 "server": str(result['server']['host'])
             },
@@ -45,7 +50,7 @@ while True:
     ]
     print("JSON body = " + str(json_body))
     client.write_points(json_body)
-    time.sleep(120)
+    time.sleep(frequency)
 
 
 

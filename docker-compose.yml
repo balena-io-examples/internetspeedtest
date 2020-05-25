@@ -30,11 +30,5 @@ services:
     volumes:
         - 'speedtest-data:/data'
     network_mode: host
-#   telegraf:
-#     build: ./telegraf
-#     restart: always
-#     cap_add:
-#       - SYS_ADMIN
-#     labels:
-#       io.balena.features.balena: '1'
+
   
