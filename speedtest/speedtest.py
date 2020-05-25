@@ -35,22 +35,20 @@ while True:
     json_body = [
         {
             "measurement": "download",
-            "tags": {
+            "time": str(result['timestamp']),
+            "fields": {
+                "value": int(str(result['download']['bandwidth'])),
                 "up": int(result['upload']['bandwidth']),
                 "latency": float(result['ping']['latency']),
                 "jitter": float(result['ping']['jitter']),
                 "interface": str(result['interface']['name']),
                 "server": str(result['server']['host'])
-            },
-            "time": str(result['timestamp']),
-            "fields": {
-                "value": int(str(result['download']['bandwidth']))
             }
         }
     ]
     print("JSON body = " + str(json_body))
     client.write_points(json_body)
-    time.sleep(frequency)
+    time.sleep(int(frequency))
 
 
 

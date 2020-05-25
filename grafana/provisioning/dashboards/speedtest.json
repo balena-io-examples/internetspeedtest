@@ -19,27 +19,46 @@
   "panels": [
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 1000,
+          "min": 0,
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-red",
+                "value": 250
+              },
+              {
+                "color": "dark-orange",
+                "value": 500
+              },
+              {
+                "color": "dark-green",
+                "value": 750
+              }
+            ]
+          },
+          "unit": "Mbits"
         },
         "overrides": []
-      },
-      "format": "Mbits",
-      "gauge": {
-        "maxValue": 1000,
-        "minValue": 0,
-        "show": true,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 7,
@@ -50,40 +69,24 @@
       "id": 4,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
+      "options": {
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "alias": "Download",
@@ -104,6 +107,8 @@
           "measurement": "download",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT last(\"value\")  / 125000 FROM \"download\" WHERE $timeFilter",
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -129,20 +134,10 @@
           "tags": []
         }
       ],
-      "thresholds": "1000,500,200",
       "timeFrom": null,
       "timeShift": null,
       "title": "Current Download",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "type": "gauge"
     },
     {
       "cacheTimeout": null,
@@ -168,16 +163,16 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#299c46",
+                "color": "dark-red",
                 "value": null
               },
               {
                 "color": "rgba(237, 129, 40, 0.89)",
-                "value": 1000
+                "value": 500
               },
               {
-                "color": "#d44a3a",
-                "value": 500
+                "color": "dark-green",
+                "value": 750
               }
             ]
           },
@@ -196,7 +191,15 @@
       "links": [],
       "maxDataPoints": 100,
       "options": {
-        "showHeader": true
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true
       },
       "pluginVersion": "7.0.0",
       "targets": [
@@ -206,7 +209,7 @@
           "measurement": "download",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"up\") FROM \"download\" WHERE $timeFilter",
+          "query": "SELECT \"up\" / 125000 FROM \"download\" WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "table",
@@ -240,31 +243,46 @@
           }
         }
       ],
-      "type": "table"
+      "type": "gauge"
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 1000,
+          "min": 0,
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 10
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "s"
         },
         "overrides": []
-      },
-      "format": "s",
-      "gauge": {
-        "maxValue": 1000,
-        "minValue": 0,
-        "show": true,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 7,
@@ -275,40 +293,24 @@
       "id": 6,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
+      "options": {
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "alias": "Latency",
@@ -316,7 +318,7 @@
           "measurement": "download",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"latency\") FROM \"download\" WHERE $timeFilter",
+          "query": "SELECT \"latency\" FROM \"download\" WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -337,32 +339,36 @@
           "tags": []
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "Latency",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "type": "gauge"
     },
     {
       "cacheTimeout": null,
-      "columns": [],
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0.75
+              }
+            ]
+          }
         },
         "overrides": []
       },
-      "fontSize": "100%",
       "gridPos": {
         "h": 7,
         "w": 4,
@@ -371,37 +377,18 @@
       },
       "id": 7,
       "links": [],
-      "pageSize": null,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": true
-      },
-      "styles": [
-        {
-          "alias": "Time",
-          "align": "auto",
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "date"
-        },
-        {
-          "alias": "",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
           ],
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "alias": "Jitter",
@@ -433,23 +420,40 @@
       "timeFrom": null,
       "timeShift": null,
       "title": "Jitter",
-      "transform": "table",
-      "type": "table-old"
+      "type": "gauge"
     },
     {
+      "cacheTimeout": null,
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
-          "mappings": [],
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 1000,
+          "min": 0,
+          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "dark-red",
                 "value": null
+              },
+              {
+                "color": "dark-orange",
+                "value": 500
+              },
+              {
+                "color": "dark-green",
+                "value": 750
               }
             ]
           },
@@ -463,28 +467,49 @@
         "x": 16,
         "y": 0
       },
-      "id": 11,
+      "id": 14,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "values": false
-        }
+          "values": true
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true
       },
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "groupBy": [],
+          "alias": "Download",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
           "measurement": "download",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT (\"value\"  / 12500) FROM \"download\" WHERE $timeFilter",
-          "rawQuery": false,
+          "query": "SELECT mean(\"value\")  / 125000 FROM \"download\" WHERE $timeFilter",
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -497,7 +522,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               },
               {
                 "params": [
@@ -512,18 +537,114 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Mean Download",
+      "title": "Mean DL",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 1000,
+          "min": 0,
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "value": 500
+              },
+              {
+                "color": "dark-green",
+                "value": 750
+              }
+            ]
+          },
+          "unit": "Mbits"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 15,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "values": false
+        },
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "alias": "Upload",
+          "groupBy": [],
+          "measurement": "download",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"up\") / 125000 FROM \"download\" WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "up"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Mean UL",
       "transformations": [
         {
           "id": "reduce",
           "options": {
             "reducers": [
-              "mean"
+              "last"
             ]
           }
         }
       ],
-      "type": "stat"
+      "type": "gauge"
     },
     {
       "aliasColors": {},
@@ -906,7 +1027,7 @@
       "type": "table"
     }
   ],
-  "refresh": "1m",
+  "refresh": "15m",
   "schemaVersion": 25,
   "style": "dark",
   "tags": [],
@@ -934,5 +1055,5 @@
   "timezone": "",
   "title": "Speedtest",
   "uid": "kaJTnGzRk",
-  "version": 8
+  "version": 9
 }

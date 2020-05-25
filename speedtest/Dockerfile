@@ -1,4 +1,4 @@
-FROM balenalib/raspberrypi3-debian-python:3.7.7-run
+FROM balenalib/raspberrypi3-debian-python:3.7.7-build
 
 WORKDIR /app
 
