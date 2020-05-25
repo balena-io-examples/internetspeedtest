@@ -61,8 +61,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 4,
+        "h": 6,
+        "w": 11,
         "x": 0,
         "y": 0
       },
@@ -181,9 +181,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 4,
-        "x": 4,
+        "h": 6,
+        "w": 9,
+        "x": 11,
         "y": 0
       },
       "id": 5,
@@ -285,10 +285,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 4,
-        "x": 8,
-        "y": 0
+        "h": 6,
+        "w": 11,
+        "x": 0,
+        "y": 6
       },
       "id": 6,
       "interval": null,
@@ -341,7 +341,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Latency",
+      "title": "Ping",
       "type": "gauge"
     },
     {
@@ -370,10 +370,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 4,
-        "x": 12,
-        "y": 0
+        "h": 6,
+        "w": 8,
+        "x": 11,
+        "y": 6
       },
       "id": 7,
       "links": [],
@@ -462,10 +462,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 4,
-        "x": 16,
-        "y": 0
+        "h": 6,
+        "w": 11,
+        "x": 0,
+        "y": 12
       },
       "id": 14,
       "interval": null,
@@ -582,10 +582,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 4,
-        "x": 20,
-        "y": 0
+        "h": 6,
+        "w": 7,
+        "x": 11,
+        "y": 12
       },
       "id": 15,
       "interval": null,
@@ -664,7 +664,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 18
       },
       "hiddenSeries": false,
       "id": 9,
@@ -806,7 +806,7 @@
         "h": 15,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 24
       },
       "id": 2,
       "pageSize": null,
@@ -945,86 +945,6 @@
       "title": "Readings",
       "transform": "table",
       "type": "table-old"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 6,
-        "y": 28
-      },
-      "id": 13,
-      "options": {
-        "frameIndex": 3,
-        "showHeader": true
-      },
-      "pluginVersion": "7.0.0",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT \"server\" from \"download\" WHERE $timeFilter",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "table",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Panel Title",
-      "type": "table"
     }
   ],
   "refresh": "15m",
