@@ -859,7 +859,7 @@
           "pattern": "up",
           "thresholds": [],
           "type": "number",
-          "unit": "none"
+          "unit": "Mbits"
         },
         {
           "$$hashKey": "object:338",
@@ -887,7 +887,7 @@
           "measurement": "download",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"value\"  / 125000, \"up\", \"latency\", \"jitter\", \"server\" FROM \"download\" WHERE $timeFilter",
+          "query": "SELECT \"value\"  / 125000, \"up\" / 125000, \"latency\", \"jitter\", \"server\" FROM \"download\" WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "table",
