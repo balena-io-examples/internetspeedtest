@@ -260,7 +260,7 @@
               "value": "null"
             }
           ],
-          "max": 1000,
+          "max": 40,
           "min": 0,
           "nullValueMode": "connected",
           "thresholds": {
@@ -341,7 +341,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Ping",
+      "title": "Latency",
       "type": "gauge"
     },
     {
@@ -662,7 +662,7 @@
               "value": "null"
             }
           ],
-          "max": 1000,
+          "max": 40,
           "min": 0,
           "nullValueMode": "connected",
           "thresholds": {
@@ -743,18 +743,15 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Mean Ping",
+      "title": "Mean Latency",
       "type": "gauge"
     },
     {
-      "cacheTimeout": null,
       "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
           "mappings": [],
-          "max": 1,
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -763,12 +760,16 @@
                 "value": null
               },
               {
+                "color": "#EAB839",
+                "value": 15
+              },
+              {
                 "color": "red",
-                "value": 0.75
+                "value": 30
               }
             ]
           },
-          "unit": "ms"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -778,8 +779,7 @@
         "x": 18,
         "y": 6
       },
-      "id": 17,
-      "links": [],
+      "id": 19,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -788,32 +788,43 @@
           ],
           "values": false
         },
-        "showThresholdLabels": true,
+        "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
       "pluginVersion": "7.0.0",
       "targets": [
         {
-          "alias": "Jitter",
-          "groupBy": [],
-          "measurement": "download",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"jitter\") FROM \"download\" WHERE $timeFilter",
+          "query": "SELECT mean(\"jitter\") / mean(\"latency\") FROM \"download\" WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A",
-          "resultFormat": "table",
+          "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "jitter"
+                  "value"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "mean"
               }
             ]
           ],
@@ -822,12 +833,12 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Mean Jitter",
+      "title": "Connection Stability",
       "type": "gauge"
     },
     {
       "aliasColors": {},
-      "bars": true,
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
@@ -856,7 +867,7 @@
         "total": false,
         "values": false
       },
-      "lines": false,
+      "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
@@ -866,12 +877,19 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:1608",
+          "alias": "Latency",
+          "yaxis": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
+          "alias": "",
           "groupBy": [
             {
               "params": [
@@ -884,7 +902,7 @@
           "measurement": "download",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT (\"value\"  / 12500) FROM \"download\" WHERE $timeFilter \n",
+          "query": "SELECT (\"value\"  / 125000), (\"up\" /125000) FROM \"download\" WHERE $timeFilter \n",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -901,6 +919,27 @@
                   " / 12500"
                 ],
                 "type": "math"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Latency",
+          "groupBy": [],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT  \"jitter\"  FROM \"download\" WHERE $timeFilter ",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
               }
             ]
           ],
@@ -958,7 +997,7 @@
         },
         {
           "$$hashKey": "object:665",
-          "format": "short",
+          "format": "ms",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1042,7 +1081,7 @@
         },
         {
           "$$hashKey": "object:338",
-          "alias": "Ping",
+          "alias": "",
           "align": "auto",
           "colorMode": null,
           "colors": [
