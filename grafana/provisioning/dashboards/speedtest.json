@@ -280,7 +280,7 @@
               }
             ]
           },
-          "unit": "s"
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -365,7 +365,8 @@
                 "value": 0.75
               }
             ]
-          }
+          },
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -681,7 +682,7 @@
               }
             ]
           },
-          "unit": "s"
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -766,7 +767,8 @@
                 "value": 0.75
               }
             ]
-          }
+          },
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -998,7 +1000,7 @@
           "$$hashKey": "object:335",
           "alias": "Time",
           "align": "auto",
-          "dateFormat": "DD/MM/YY hh:mm:ss",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "pattern": "Time",
           "type": "date"
         },
@@ -1049,12 +1051,30 @@
             "rgba(50, 172, 45, 0.97)"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
+          "decimals": 1,
           "mappingType": 1,
           "pattern": "latency",
           "thresholds": [],
           "type": "number",
-          "unit": "s"
+          "unit": "ms"
+        },
+        {
+          "$$hashKey": "object:1193",
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "jitter",
+          "thresholds": [],
+          "type": "number",
+          "unit": "ms"
         }
       ],
       "targets": [
@@ -1124,7 +1144,7 @@
       "type": "table-old"
     }
   ],
-  "refresh": "15m",
+  "refresh": "30m",
   "schemaVersion": 25,
   "style": "dark",
   "tags": [],
@@ -1132,12 +1152,11 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
-      "5s",
       "10s",
       "30s",
       "1m",
@@ -1152,5 +1171,5 @@
   "timezone": "",
   "title": "Speedtest",
   "uid": "kaJTnGzRk",
-  "version": 9
+  "version": 10
 }
