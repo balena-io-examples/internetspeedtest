@@ -20,7 +20,7 @@ My normally speedy internet connection dropped out (thanks roadwork guys!) and I
 * 16GB Micro-SD Card (we recommend Sandisk Extreme Pro SD cards)
 
 And that's it.
-Actually any of the ARM or aarch64 [devices supported by Balena]([https://www.balena.io/os/docs/supported-boards/](https://www.balena.io/os/docs/supported-boards/)) will work for this project. Your choice should be influenced by the speed of the internet connection you want to monitor. If your connection is <30Mbit/s then a Pi3 using it's inbuilt WiFi chip might be OK, since you're unlikely to exceed it's throughput. But in general WiFi has too many variables, such as distance from the router and number of walls in the way, so to keep things consistent I would urge you to use a device with an Ethernet port (i.e. anything other than a Pi Zero/W).
+Actually any of the ARM or aarch64 [devices supported by Balena](https://www.balena.io/os/docs/supported-boards/) will work for this project. Your choice should be influenced by the speed of the internet connection you want to monitor. If your connection is <30Mbit/s then a Pi3 using it's inbuilt WiFi chip might be OK, since you're unlikely to exceed it's throughput. But in general WiFi has too many variables, such as distance from the router and number of walls in the way, so to keep things consistent I would urge you to use a device with an Ethernet port (i.e. anything other than a Pi Zero/W).
 Other than that, it's a case of making sure you use a device with enough network throughput to really stretch your broadband pipe. Here's a handy lookup table:
 |Broadband Speed|Devices  |  Notes |
 |--|--|--|
@@ -45,7 +45,7 @@ You can change how frequently the app test your connection, by setting the numbe
 ![enter image description here](https://i.ibb.co/ym20vC8/config.jpg)
 
 And the eagle-eyed of you will see another variable, `SERVER_ID`. Let me explain:
-The speed tester uses [Ookla's Command Line app]([https://www.speedtest.net/apps/cli](https://www.speedtest.net/apps/cli)) under the hood, which tries to determine the closest server to you automatically. You could just leave it this way, but I found in my testing that the same server wasn't used each time, and the results were less consistent as a result. To combat this, you can download the CLI (from that link --^) and run the following command:
+The speed tester uses [Ookla's Command Line app](https://www.speedtest.net/apps/cli) under the hood, which tries to determine the closest server to you automatically. You could just leave it this way, but I found in my testing that the same server wasn't used each time, and the results were less consistent as a result. To combat this, you can download the CLI (from that link --^) and run the following command:
 `Speedtest -L` which will give you an output like:
 
 ![enter image description here](https://i.ibb.co/CnCtnSD/servers.jpg)
