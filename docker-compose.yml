@@ -1,6 +1,7 @@
 version: '2'
 volumes:
     speedtest-data:
+    settings:
 services:
   influxdb:
     privileged: true

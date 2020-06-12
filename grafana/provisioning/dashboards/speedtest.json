@@ -307,7 +307,7 @@
           ],
           "values": false
         },
-        "showThresholdLabels": false,
+        "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
       "pluginVersion": "7.0.0",
@@ -709,7 +709,7 @@
           ],
           "values": false
         },
-        "showThresholdLabels": false,
+        "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
       "pluginVersion": "7.0.0",
@@ -788,7 +788,7 @@
           ],
           "values": false
         },
-        "showThresholdLabels": false,
+        "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
       "pluginVersion": "7.0.0",
@@ -1191,7 +1191,7 @@
     "list": []
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -1210,5 +1210,5 @@
   "timezone": "",
   "title": "Speedtest",
   "uid": "kaJTnGzRk",
-  "version": 10
+  "version": 11
 }
