@@ -1,35 +1,51 @@
 version: '2'
 volumes:
-    speedtest-data:
+    speedtest-data2:
     settings:
 services:
-  influxdb:
+  transport:
+    image:  phildwilson/balenalabs-transport:raspberrypi3
+    restart: always
+    labels:
+      io.balena.features.balena-api: '1'
     privileged: true
-    restart: always
-    build: ./influxdb
-    volumes:
-      - 'speedtest-data:/data'
     ports:
-      - "8086:8086"
-    network_mode: host
-  grafana:
+      - "8080"
+  dashboard:
     restart: always
-    build: ./grafana
-    network_mode: host
+    image: phildwilson/balenalabs-dashboard:raspberrypi3
     ports:
       - "80"
     volumes:
-      - 'speedtest-data:/data'
+      - 'speedtest-data2:/data'
     environment:
+        - 'GF_PATHS_DATA=/data/grafana'
         - 'GF_SERVER_HTTP_PORT=80'
-        - 'GF_PATHS_PROVISIONING=/usr/src/app/provisioning'
         - 'GF_SESSION_PROVIDER=memory'
+        - 'GF_AUTH_ANONYMOUS_ENABLED=true'
+  influxdb:
+    image: influxdb@sha256:73f876e0c3bd02900f829d4884f53fdfffd7098dd572406ba549eed955bf821f
+    container_name: influxdb
+    restart: always
+    environment:
+      - INFLUXDB_DB=balena
+      - INFLUXDB_USER=balena
+      - INFLUXDB_ADMIN_ENABLED=true
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+    volumes:
+      - 'speedtest-data2:/data'
   speedtest:
     build: ./speedtest
     privileged: true
     restart: never
     volumes:
-        - 'speedtest-data:/data'
+        - 'speedtest-data2:/data'
     network_mode: host
+  mqtt:
+    image: arm32v6/eclipse-mosquitto
+    ports:
+      - "1883:1883"
+    restart: always
 
   

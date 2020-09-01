@@ -2,10 +2,7 @@ import os
 import subprocess
 import time
 import json
-from influxdb import InfluxDBClient
-
-client = InfluxDBClient('localhost', 8086, 'root', 'root', 'speedtest')
-client.create_database('speedtest')
+import paho.mqtt.client as mqtt
 
 class speedtest():
     def test(self):
@@ -30,7 +27,11 @@ class speedtest():
 speedtest = speedtest()
 frequency = os.environ.get('FREQUENCY') or 3600
 
+broker_address = "localhost" 
+client = mqtt.Client("1")
+
 while True:
+    client.connect(broker_address)
     result = speedtest.test()
     json_body = [
         {
@@ -46,8 +47,12 @@ while True:
             }
         }
     ]
+
     print("JSON body = " + str(json_body))
-    client.write_points(json_body)
+    msg_info = client.publish("sensors",json.dumps(json_body))
+    if msg_info.is_published() == False:
+            msg_info.wait_for_publish()
+    client.disconnect()
     time.sleep(int(frequency))
 
 
