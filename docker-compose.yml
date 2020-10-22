@@ -4,7 +4,7 @@ volumes:
     settings:
 services:
   transport:
-    image:  phildwilson/balenalabs-transport:raspberrypi3
+    image:  balenablocks/connector:raspberrypi3
     restart: always
     labels:
       io.balena.features.balena-api: '1'
