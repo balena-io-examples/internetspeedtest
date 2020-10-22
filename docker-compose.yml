@@ -9,11 +9,9 @@ services:
     labels:
       io.balena.features.balena-api: '1'
     privileged: true
-    ports:
-      - "8080"
   dashboard:
     restart: always
-    image: phildwilson/balenalabs-dashboard:raspberrypi3
+    image: balenablocks/dashboard:raspberrypi3
     ports:
       - "80"
     volumes:
