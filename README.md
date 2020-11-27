@@ -4,7 +4,7 @@ Log your internet download speed, upload speed and latency metrics to InfluxDB, 
 ***TLDR:***
 Click this to deploy this repository to balenaCloud:
 
-[![](https://balena.io/deploy.png)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/balena-io-playground/internetspeedtest)
+[![](https://balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/balena-io-playground/internetspeedtest)
 
 ## Introduction:
 The internet now underpins our everyday lives. When our connection goes down we sudden lose a whole bunch of services that we've come to rely on: video calls, email, pictures of cats and more. It's serious stuff, and the quicker we notice, the quicker we join the phone queue to our ISP and start running through the support checklist. "Yes, I have turned it off and on again...."
