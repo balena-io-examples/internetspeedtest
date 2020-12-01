@@ -3,7 +3,14 @@ volumes:
     speedtest-data2:
     settings:
 services:
-  transport:
+  speedtest:
+    build: ./speedtest
+    privileged: true
+    restart: never
+    volumes:
+        - 'speedtest-data2:/data'
+    network_mode: host
+  connector:
     image:  balenablocks/connector:raspberrypi3
     restart: always
     labels:
@@ -33,13 +40,6 @@ services:
       - INFLUXDB_ADMIN_PASSWORD=admin
     volumes:
       - 'speedtest-data2:/data'
-  speedtest:
-    build: ./speedtest
-    privileged: true
-    restart: never
-    volumes:
-        - 'speedtest-data2:/data'
-    network_mode: host
   mqtt:
     image: arm32v6/eclipse-mosquitto
     ports:

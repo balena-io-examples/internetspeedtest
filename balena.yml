@@ -1,0 +1,19 @@
+version: "2"
+slug: "internet-speed-tester"
+name: "Internet Speed Tester"
+type: "sw.application"
+assets:
+  - url: "https://github.com/balena-io-playground/internetspeedtest"
+    name: "repository"
+  - url: "https://raw.githubusercontent.com/balena-io-playground/internetspeedtest/master/logo.png"
+    name: "logo"
+data:
+  description: "Periodically tests your internet speed, stores the result in InfluxDB and charts it in grafana."
+  applicationEnvironmentVariables:
+    - FREQUENCY: 3600
+    - MQTT_BROKER: 'localhost'
+  defaultDeviceType: "raspberrypi3"
+  supportedDeviceTypes:
+    - "raspberrypi4-64"
+    - "raspberrypi3"
+    - "fincm3"

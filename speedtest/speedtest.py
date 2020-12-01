@@ -26,8 +26,8 @@ class speedtest():
 
 speedtest = speedtest()
 frequency = os.environ.get('FREQUENCY') or 3600
+broker_address = os.environ.get('MQTT_BROKER') or "localhost"
 
-broker_address = "localhost" 
 client = mqtt.Client("1")
 
 while True:
