@@ -1,14 +1,15 @@
 version: '2'
 volumes:
-    speedtest-data2:
+    speedtest-data:
     settings:
+    dashboard-data:
 services:
   speedtest:
     build: ./speedtest
     privileged: true
     restart: never
     volumes:
-        - 'speedtest-data2:/data'
+        - 'speedtest-data:/data'
     network_mode: host
   connector:
     image:  balenablocks/connector:raspberrypi3
@@ -18,16 +19,11 @@ services:
     privileged: true
   dashboard:
     restart: always
-    image: balenablocks/dashboard:raspberrypi3
+    build: ./dashboard
     ports:
       - "80"
     volumes:
-      - 'speedtest-data2:/data'
-    environment:
-        - 'GF_PATHS_DATA=/data/grafana'
-        - 'GF_SERVER_HTTP_PORT=80'
-        - 'GF_SESSION_PROVIDER=memory'
-        - 'GF_AUTH_ANONYMOUS_ENABLED=true'
+        - 'dashboard-data:/data'
   influxdb:
     image: influxdb@sha256:73f876e0c3bd02900f829d4884f53fdfffd7098dd572406ba549eed955bf821f
     container_name: influxdb
@@ -39,7 +35,7 @@ services:
       - INFLUXDB_ADMIN_USER=admin
       - INFLUXDB_ADMIN_PASSWORD=admin
     volumes:
-      - 'speedtest-data2:/data'
+      - 'speedtest-data:/data'
   mqtt:
     image: arm32v6/eclipse-mosquitto
     ports:
