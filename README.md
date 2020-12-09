@@ -11,9 +11,7 @@ The internet now underpins our everyday lives. When our connection goes down we 
 
 Or maybe your connection is pretty solid and *seems* to work OK, but you don't really track your connection speed. There's those times where Netflix pauses to buffer some more, just at the important bit of your film. Oh, and it  *feels* as if your connection is slower when other parts of the world wake up. And you suspect that your teenage daughter gaming online uses most of your bandwidth, and you've been wondering if paying for a faster connection would help you all out.
 Well wonder no more. This project is for you: it performs an internet test regularly (configurable), puts the results into an Influx database and presents some charts using Grafana. Like these:
-![enter image description here](https://i.ibb.co/9YY92dL/Screenshot.jpg)
-Oooo, see what happened there --^ 
-My normally speedy internet connection dropped out (thanks roadwork guys!) and I had to plug a 4G/LTE dongle into the router. At least I got a screenshot out of it...
+![enter image description here](https://i.ibb.co/5knsK8h/internetspeedtest.png)
 
 ## Hardware Required
 * A raspberry Pi
