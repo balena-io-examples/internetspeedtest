@@ -1,14 +1,16 @@
-version: "2"
-slug: "internet-speed-tester"
 name: "Internet Speed Tester"
+description: "Periodically tests your internet speed, stores the result in InfluxDB and charts it in grafana."
 type: "sw.application"
 assets:
-  - url: "https://github.com/balena-io-playground/internetspeedtest"
-    name: "repository"
-  - url: "https://raw.githubusercontent.com/balena-io-playground/internetspeedtest/master/logo.png"
-    name: "logo"
+  repository:
+    type: "blob.asset"
+    data:
+      url: "https://github.com/balena-io-playground/internetspeedtest"
+  logo:
+    type: "blob.asset"
+    data:
+      url: "https://raw.githubusercontent.com/balena-io-playground/internetspeedtest/master/logo.png"
 data:
-  description: "Periodically tests your internet speed, stores the result in InfluxDB and charts it in grafana."
   applicationEnvironmentVariables:
     - FREQUENCY: 3600
     - MQTT_BROKER: 'localhost'
