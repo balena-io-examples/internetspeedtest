@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "panels": [
     {
@@ -87,7 +87,7 @@
           "measurement": "mqtt_consumer",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"fields_value\" / 125000 FROM \"mqtt_consumer\" WHERE $timeFilter",
+          "query": "SELECT \"fields_value\" / 12500 FROM \"mqtt_consumer\" WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -176,7 +176,7 @@
           "measurement": "mqtt_consumer",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"fields_value\" / 125000 FROM \"mqtt_consumer\" WHERE $timeFilter",
+          "query": "SELECT \"fields_value\" / 12500 FROM \"mqtt_consumer\" WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -303,7 +303,7 @@
           "measurement": "mqtt_consumer",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"fields_up\" / 125000 FROM \"mqtt_consumer\" WHERE $timeFilter",
+          "query": "SELECT \"fields_up\" / 12500 FROM \"mqtt_consumer\" WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -386,7 +386,7 @@
           "measurement": "mqtt_consumer",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"fields_up\" / 125000 FROM \"mqtt_consumer\" WHERE $timeFilter",
+          "query": "SELECT \"fields_up\" / 12500 FROM \"mqtt_consumer\" WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -897,7 +897,7 @@
           "measurement": "mqtt_consumer",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"fields_value\" /125000 AS \"Download (Mbps)\", \"fields_up\" /125000 AS \"Upload (Mbps)\",  \"fields_latency\" AS \"Latency (ms)\", \"fields_jitter\" AS \"Jitter (ms)\" FROM \"mqtt_consumer\" WHERE $timeFilter",
+          "query": "SELECT \"fields_value\" /12500 AS \"Download (Mbps)\", \"fields_up\" /12500 AS \"Upload (Mbps)\",  \"fields_latency\" AS \"Latency (ms)\", \"fields_jitter\" AS \"Jitter (ms)\" FROM \"mqtt_consumer\" WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "table",
@@ -996,5 +996,5 @@
   "timezone": "",
   "title": "Internet Speed Test",
   "uid": "InternetSpeedTest",
-  "version": 2
+  "version": 3
 }
