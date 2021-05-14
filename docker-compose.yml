@@ -11,8 +11,10 @@ services:
     volumes:
         - 'speedtest-data:/data'
     network_mode: host
+    labels:
+      io.balena.features.supervisor-api: 1
   connector:
-    image:  balenablocks/connector:raspberrypi3
+    image:  balenablocks/connector
     restart: always
     labels:
       io.balena.features.balena-api: '1'
@@ -42,6 +44,3 @@ services:
     ports:
       - "1883:1883"
     restart: always
-    
-
-  

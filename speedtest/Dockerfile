@@ -10,4 +10,4 @@ RUN tar -xvf speedtest.tgz
 
 COPY . /app
 
-ENTRYPOINT [ "python", "-u", "speedtest.py" ]
+CMD ["/bin/bash", "run.sh"]
