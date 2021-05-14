@@ -1,5 +1,8 @@
 name: "Internet Speed Tester"
 description: "Periodically tests your internet speed, stores the result in InfluxDB and charts it in grafana."
+fleetcta: Test the netz
+post-provisioning: >-
+  Connect the device to your network (ethernet is best if you have it) and give the device a few minutes to download and run. Then point your browser to http://balena and you should find a grafana dashboard. 
 type: "sw.application"
 assets:
   repository:
