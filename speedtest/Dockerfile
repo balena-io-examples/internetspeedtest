@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN pip3 install paho-mqtt 
 
-RUN wget https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-arm-linux.tgz -O speedtest.tgz
+RUN wget https://install.speedtest.net/app/cli/ookla-speedtest-1.0.0-arm-linux.tgz -O speedtest.tgz
 
 RUN tar -xvf speedtest.tgz
 
