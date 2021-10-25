@@ -1,0 +1,31 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine-node:14-build as builder
+WORKDIR /usr/src
+
+RUN install_packages python3
+
+# livepush: changing package*.json will trigger a container rebuild
+COPY package*.json ./
+RUN npm ci
+
+#dev-cmd-live=npm run watch
+
+# livepush: changing these files will NOT trigger a container rebuild
+# npm run livepush will pick up and process the changes 
+COPY src src
+COPY typings typings
+COPY tsconfig.json .
+
+# Build project for run stage and reinstall production dependencies
+RUN npm run build
+RUN npm ci --production
+
+# Run stage is ignored by livepush
+# https://github.com/balena-io-modules/livepush#multistage-images
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine-node:14-run
+WORKDIR /usr/src
+
+COPY package*.json ./
+COPY --from=builder /usr/src/build /usr/src/build
+COPY --from=builder /usr/src/node_modules /usr/src/node_modules
+
+CMD [ "npm", "start" ]
