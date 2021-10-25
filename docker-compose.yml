@@ -18,26 +18,28 @@ services:
       EXTERNAL_HTTP_LISTENER_NAME: network-data
 
   dashboard:
-    restart: always
     build: ./dashboard
+    restart: always
     ports:
-      - "80"
+      - 80
     volumes:
         - dashboard-data:/data
 
   influxdb:
     image: influxdb@sha256:73f876e0c3bd02900f829d4884f53fdfffd7098dd572406ba549eed955bf821f
-    container_name: influxdb
     restart: always
     environment:
-      - INFLUXDB_DB=balena
-      - INFLUXDB_USER=balena
-      - INFLUXDB_ADMIN_ENABLED=true
-      - INFLUXDB_ADMIN_USER=admin
-      - INFLUXDB_ADMIN_PASSWORD=admin
-      - INFLUXDB_DATA_DIR=/data
+      INFLUXDB_DB: balena
+      INFLUXDB_USER: balena
+      INFLUXDB_ADMIN_ENABLED: true
+      INFLUXDB_ADMIN_USER: admin
+      INFLUXDB_ADMIN_PASSWORD: admin
+      INFLUXDB_DATA_DIR: /data
     volumes:
       - influx-data:/data
 
   network-monitor:
     build: ./network-monitor
+    environment:
+      SPEEDTEST_SERVER_ID: 18730
+      ROUTER_IP_ADDRESS: 192.168.90.1
