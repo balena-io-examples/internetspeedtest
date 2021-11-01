@@ -1,4 +1,4 @@
-import { getStats } from 'fibertel';
+// import { getStats } from 'fibertel';
 import speedTest from 'speedtest-net';
 import axios from 'axios';
 var ping = require('ping');
@@ -67,8 +67,8 @@ setInterval(async () => {
   try {
     // Get the data and push it to influxdb via connector block
     const payload = {
-      speedtest: await speedTest(speedTestOpts),
-      fibertel: await getStats()
+      speedtest: await speedTest(speedTestOpts)
+      // fibertel: await getStats()
     };
 
     await axios.post('http://connector:8080', payload);
