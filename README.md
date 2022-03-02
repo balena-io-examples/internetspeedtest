@@ -1,10 +1,10 @@
-# Internet Speed Test
+# Internet Speed Monitor
 Log your internet download speed, upload speed and latency metrics to InfluxDB, and display it in a Grafana dashboard, all on a Raspberry Pi.
+You can now see the results on a display connected to your device!
 
 ***TLDR:***
 Click this to deploy this repository to balenaCloud:
 
-[![](https://balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/balena-io-playground/internetspeedtest)
 
 ## Introduction:
 The internet now underpins our everyday lives. When our connection goes down we sudden lose a whole bunch of services that we've come to rely on: video calls, email, pictures of cats and more. It's serious stuff, and the quicker we notice, the quicker we join the phone queue to our ISP and start running through the support checklist. "Yes, I have turned it off and on again...."
@@ -31,9 +31,14 @@ For other device types, find the product datasheet and work out if the ethernet 
 ## Setup and configuration
  It's pretty simple, click this button:
 
-[![](https://balena.io/deploy.png)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/balena-io-playground/internetspeedtest)
+And it will work. 
 
-And it will work. Just make the Device URL public:
+You can see the results on a connected display! It could be a HDMI monitor connected to RPI or any display supported by 
+RPI.If you want to see the results locally from another device, type IP address of your device on browser.
+This project uses [Balena's Browser Block](https://github.com/balenablocks/browser) to display the result in a browser
+in kiosk mode.
+
+If you want to see the results over the internet, just make the Device URL public:
 
 ![enter image description here](https://i.ibb.co/vZbMzT1/public-URL.jpg)
 

@@ -1,14 +1,14 @@
-name: "Internet Speed Tester"
-description: "Periodically tests your internet speed, stores the result in InfluxDB and charts it in grafana."
+name: "Internet Speed Test Monitor"
+description: "Periodically tests your internet speed, stores the result in InfluxDB and charts it in grafana. results can be visible online or on a connected display"
 fleetcta: Test the netz
 post-provisioning: >-
-  Connect the device to your network (ethernet is best if you have it) and give the device a few minutes to download and run. Then point your browser to http://balena and you should find a grafana dashboard. 
+  Connect the device to your network (ethernet is best if you have it) and give the device a few minutes to download and run. Then point your browser to ip address of your device and you should find a grafana dashboard.
 type: "sw.application"
 assets:
   repository:
     type: "blob.asset"
     data:
-      url: "https://github.com/balena-io-playground/internetspeedtest"
+      url: "https://github.com/moe-sani/internetspeedmonitor"
   logo:
     type: "blob.asset"
     data:
@@ -17,7 +17,8 @@ data:
   applicationEnvironmentVariables:
     - FREQUENCY: 3600
     - MQTT_BROKER: 'localhost'
-  defaultDeviceType: "raspberrypi3"
+    - KIOSK: 1
+  defaultDeviceType: "raspberrypi4-64"
   supportedDeviceTypes:
     - "raspberrypi4-64"
     - "raspberrypi3"
