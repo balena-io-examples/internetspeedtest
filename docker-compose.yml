@@ -44,3 +44,11 @@ services:
     ports:
       - "1883:1883"
     restart: always
+  # balena block web browser
+  browser:
+    image: balenablocks/browser
+    privileged: true # required for UDEV to find plugged in peripherals such as a USB mouse
+    network_mode: host
+    ports:
+        - '5011' # management API (optional)
+        - '35173' # Chromium debugging port (optional)
