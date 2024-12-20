@@ -3,6 +3,8 @@ import subprocess
 import time
 import json
 import paho.mqtt.client as mqtt
+import re
+
 
 class speedtest():
     def test(self):
@@ -24,7 +26,7 @@ class speedtest():
         print ("Server = " + str(result['server']))
         return result
 
-    def ping_adreca(adreca, duracio_segons):
+    def ping_adreca(self, adreca, duracio_segons):
         temps_final = time.time() + duracio_segons
         paquets_enviats = 0
         paquets_perduts = 0
