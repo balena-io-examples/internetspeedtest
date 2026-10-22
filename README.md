@@ -1,5 +1,5 @@
 # Internet Speed Test
-Log your internet download speed, upload speed and latency metrics to InfluxDB, and display it in a Grafana dashboard, all on a Raspberry Pi.
+Log your internet download speed, upload speed and latency metrics to InfluxDB, and display it in a Grafana dashboard, all on a Raspberry Pi 4 or 5.
 
 ***TLDR:***
 Click this to deploy this repository to balenaCloud:
@@ -14,19 +14,17 @@ Well wonder no more. This project is for you: it performs an internet test regul
 ![enter image description here](https://i.ibb.co/5knsK8h/internetspeedtest.png)
 
 ## Hardware Required
-* A raspberry Pi
+* A Raspberry Pi 4 or Raspberry Pi 5
 * 16GB Micro-SD Card (we recommend Sandisk Extreme Pro SD cards)
 
 And that's it.
-Actually any of the ARM or aarch64 [devices supported by Balena](https://www.balena.io/os/docs/supported-boards/) will work for this project. Your choice should be influenced by the speed of the internet connection you want to monitor. If your connection is <30Mbit/s then a Pi3 using it's inbuilt WiFi chip might be OK, since you're unlikely to exceed it's throughput. But in general WiFi has too many variables, such as distance from the router and number of walls in the way, so to keep things consistent I would urge you to use a device with an Ethernet port (i.e. anything other than a Pi Zero/W).
-Other than that, it's a case of making sure you use a device with enough network throughput to really stretch your broadband pipe. Here's a handy lookup table:
+The app runs on 64-bit balenaOS, so when you create your fleet choose the Raspberry Pi 4 (using 64bit OS) or Raspberry Pi 5 [device type](https://docs.balena.io/reference/hardware/devices/) (`raspberrypi4-64` or `raspberrypi5`). Older 32-bit Pis such as the Pi 3 are no longer supported.
+Both the Pi 4 and Pi 5 have built-in WiFi, but WiFi has too many variables, such as distance from the router and number of walls in the way, so to keep things consistent I would urge you to plug in with Ethernet.
+Other than that, it's a case of making sure your device has enough network throughput to really stretch your broadband pipe. Here's a handy lookup table:
 |Broadband Speed|Devices  |  Notes |
 |--|--|--|
-| <30Mbit/s |RPi 2/3/3b+/4  |100 Mbit/s Ethernet port will be fine.   |
-|> 30MBit/s & <300Mbit/s|RPi3B+/4|Both have Gigabit ethernet ports, however the 3b+ is limited to 300Mbit/s by the USB2.0 port.
-|>300Mbit/s|RPi 4|The only Pi with true Gigabit ethernet|
-
-For other device types, find the product datasheet and work out if the ethernet port is up to the job.
+| <1Gbit/s |RPi 4/5  |Both have true Gigabit Ethernet ports, so either will be fine.   |
+| ≥1Gbit/s |RPi 4/5  |The Gigabit Ethernet port is the bottleneck, so results will top out just under 1Gbit/s rather than showing your full speed.|
 
 ## Setup and configuration
  It's pretty simple, click this button:
