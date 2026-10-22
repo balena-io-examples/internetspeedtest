@@ -17,8 +17,7 @@ data:
   applicationEnvironmentVariables:
     - FREQUENCY: 3600
     - MQTT_BROKER: 'localhost'
-  defaultDeviceType: "raspberrypi3"
+  defaultDeviceType: "raspberrypi4-64"
   supportedDeviceTypes:
     - "raspberrypi4-64"
-    - "raspberrypi3"
-    - "fincm3"
+    - "raspberrypi5"
